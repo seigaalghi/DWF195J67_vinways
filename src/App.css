@@ -1,0 +1,296 @@
+/* --------------------------------------- */
+/* Import Font */
+/* --------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700;800&display=swap');
+
+/* --------------------------------------- */
+/* Basic Setup */
+/* --------------------------------------- */
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-color: #00031f;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* --------------------------------------- */
+/* Reusable */
+/* --------------------------------------- */
+
+.btn {
+  background: #03f387;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #00031f;
+  font-weight: 800;
+  margin: 10px 0;
+}
+
+.btn-small {
+  display: flex;
+  width: 150px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-big {
+  width: 350px;
+  height: 50px;
+}
+
+.input {
+  width: 350px;
+  height: 50px;
+  border-radius: 5px;
+  margin: 10px 0;
+  background-color: #d2d2d275;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+h1 {
+  font-weight: 800;
+  color: #03f387;
+}
+
+.input-file {
+  display: none;
+}
+
+.label-input-file {
+  display: block;
+  color: #03f387;
+  margin: 10px auto;
+  cursor: pointer;
+}
+
+/* --------------------------------------- */
+/* App */
+/* --------------------------------------- */
+
+.App {
+  max-width: 90%;
+  margin: 0px auto;
+}
+
+/* --------------------------------------- */
+/* Auth */
+/* --------------------------------------- */
+
+.background {
+  background-image: url('img/bg.svg');
+  background-position: fixed;
+  height: 100vh;
+  display: grid;
+  grid-template-areas:
+    'none header header header'
+    'none space space space'
+    'none content content right'
+    'none footer footer footer';
+  grid-template-columns: 0.5fr 2fr 1fr 2fr;
+  grid-template-rows: 50px 1fr 2fr 1fr;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.background-container {
+  grid-area: content;
+}
+
+.background h1 {
+  font-size: 100px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.background h1.everything {
+  color: #03f387;
+  display: flex;
+}
+
+.background h1.everything img {
+  margin-right: 20px;
+}
+
+div.background p {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 33px;
+  color: #8b8b8b;
+  margin-top: 30px;
+}
+
+.form {
+  grid-area: right;
+}
+
+.form h2 {
+  color: #03f387;
+  font-weight: 800;
+  font-size: 36px;
+}
+
+nav.user-nav {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  font-family: normal;
+  font-size: 30px;
+}
+
+nav.user-nav img {
+  margin-right: 5px;
+}
+
+.color-primary {
+  color: #03f387;
+}
+
+.slider img {
+  width: 95%;
+}
+
+/* --------------------------------------- */
+/* Navbar */
+/* --------------------------------------- */
+
+.navbar {
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  background: #363954;
+  position: fixed;
+  z-index: 999;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin: 0px auto;
+  justify-content: space-between;
+}
+
+.navbar-container img {
+  margin-right: 5px;
+}
+
+.navbar .nav-user {
+  height: 40px;
+  background-color: aliceblue;
+}
+
+.navbar .user {
+  height: 100%;
+  border-radius: 50%;
+  margin: 0px auto;
+}
+
+.nav-icon {
+  display: flex;
+  align-items: center;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+}
+
+/* --------------------------------------- */
+/* Home */
+/* --------------------------------------- */
+/* ----------- */
+/* Slider */
+/* ----------- */
+
+.slider-container {
+  margin: 80px auto 40px auto;
+}
+
+.slider img {
+  margin: 0px auto;
+}
+/* ----------- */
+/* Content */
+/* ----------- */
+.content-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  max-width: 90%;
+  margin: 0px auto;
+}
+
+.contents {
+  background-color: #363954;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 192px;
+  height: 240px;
+  margin: 5px;
+}
+
+.contents img {
+  width: 100%;
+}
+
+.content {
+  display: grid;
+  grid-template-areas: 'title year' 'artist none';
+}
+
+.song-title {
+  grid-area: title;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+}
+.song-year {
+  grid-area: year;
+  text-align: right;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+.song-artist {
+  grid-area: artist;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #03f387;
+}
+
+/* --------------------------------------- */
+/* Payment */
+/* --------------------------------------- */
+.payment {
+  width: 70%;
+  margin: 15% auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.payment p:first-of-type {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.coways {
+  color: #03f387;
+}
