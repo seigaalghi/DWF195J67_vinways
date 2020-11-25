@@ -28,6 +28,7 @@ body {
   border-radius: 5px;
   text-decoration: none;
   color: #00031f;
+  font-size: 18px;
   font-weight: 800;
   margin: 10px 0;
   padding: 5px;
@@ -54,6 +55,9 @@ body {
 .btn-big {
   width: 350px;
   height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .input {
@@ -404,6 +408,50 @@ div.transaction img {
 
 div.transaction table {
   margin: 20px auto;
-  width: 100%;
+  width: 10 0%;
   text-align: center;
+}
+
+/* --------------------------------------- */
+/* Add Music */
+/* --------------------------------------- */
+
+div.add-music-container {
+  max-width: 90%;
+  margin: 90px auto 0px auto;
+}
+
+div.add-music-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+div.add-music-container form input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 10px auto;
+  text-align: center;
+}
+
+div.add-music-container form label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 10px auto;
+  text-align: center;
+}
+
+div.add-music-container form select {
+  margin: 10px auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align-last: center;
+  color: #03f387;
+}
+
+div.add-music-container form select option {
+  background-color: #00031f;
 }

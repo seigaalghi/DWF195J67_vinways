@@ -196,5 +196,31 @@
       "img": "https://upload.wikimedia.org/wikipedia/id/a/a7/Ada-band-harmonius_800.jpg",
       "audio": "https://static.wikia.nocookie.net/bandori/images/a/a6/Y.O.L.O%21%21%21%21%21_-instrumental-.ogg"
     }
+  ],
+  "artist": [
+    {
+      "id": "1",
+      "name": "LiSA",
+      "img": "https://img1.ak.crunchyroll.com/i/spire3/adb343ffc1962c7a4062bc79d5a722d61388799204_large.jpg",
+      "age": "24",
+      "type": "solo",
+      "start": "2008"
+    },
+    {
+      "id": "2",
+      "name": "fripSide",
+      "img": "https://ecs7.tokopedia.net/img/cache/200-square/product-1/2020/7/1/batch-upload/batch-upload_b17314a0-cc3e-462c-9dec-eada5e18e1e4.jpg",
+      "age": "28",
+      "type": "duo",
+      "start": "2011"
+    },
+    {
+      "id": "3",
+      "name": "Roselia",
+      "img": "https://ecs7.tokopedia.net/img/cache/200-square/product-1/2019/1/21/6061512/6061512_602dfbb2-0a13-489b-959a-381d4c9e1967_1906_2560.jpg",
+      "age": "21",
+      "type": "band",
+      "start": "2018"
+    }
   ]
 }
