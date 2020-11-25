@@ -3,6 +3,7 @@ import './App.css';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Home from './components/Home';
+import ListTrans from './components/ListTrans';
 import Payment from './components/Payment';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path='/register' exact component={Register} />
           <Route path='/' exact component={Home} />
           <Route path='/payment' exact component={Payment} />
+          <Route path='/list-trans' exact component={ListTrans} />
         </Switch>
       </div>
     </Router>

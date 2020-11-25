@@ -2,10 +2,10 @@ import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import Navbar from './Navbar';
+import MusicPlayer from './MusicPlayer';
 
 // JSON IMPORT
 import musicList from '../JSON/musicList.json';
-import MusicPlayer from './MusicPlayer';
 
 const Home = () => {
   const [player, setPlayer] = useState({});

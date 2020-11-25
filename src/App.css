@@ -30,6 +30,17 @@ body {
   color: #00031f;
   font-weight: 800;
   margin: 10px 0;
+  padding: 5px;
+}
+
+.bg-success {
+  background: #03f387;
+}
+.bg-warning {
+  background: #fbff00;
+}
+.bg-danger {
+  background: #ff0000;
 }
 
 .btn-small {
@@ -76,6 +87,34 @@ h1 {
   margin: 10px auto;
   cursor: pointer;
   overflow: hidden;
+}
+
+.color-primary {
+  color: #03f387;
+}
+
+.color-danger {
+  color: #ff0000;
+}
+
+.color-warning {
+  color: #fbff00;
+}
+
+table,
+th,
+td {
+  border-bottom: 2px solid #8b8b8b;
+  border-collapse: collapse;
+  padding: 20px;
+}
+
+tr:nth-child(even) {
+  background-color: #191c35;
+}
+
+th {
+  color: #03f387;
 }
 
 /* --------------------------------------- */
@@ -156,10 +195,6 @@ nav.user-nav {
 
 nav.user-nav img {
   margin-right: 5px;
-}
-
-.color-primary {
-  color: #03f387;
 }
 
 .slider img {
@@ -351,4 +386,24 @@ div.music-player-container p {
 
 div.music-player-container .music-player .rhap_main-controls-button {
   color: #03f387;
+}
+
+/* --------------------------------------- */
+/* List Transaction */
+/* --------------------------------------- */
+
+div.transaction {
+  flex-direction: column;
+  margin-top: 90px;
+}
+
+div.transaction img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+div.transaction table {
+  margin: 20px auto;
+  width: 100%;
+  text-align: center;
 }
