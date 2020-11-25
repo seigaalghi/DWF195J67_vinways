@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import AddArtist from './components/AddArtist';
 import AddMusic from './components/AddMusic';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -18,6 +19,7 @@ function App() {
           <Route path='/payment' exact component={Payment} />
           <Route path='/list-trans' exact component={ListTrans} />
           <Route path='/add-music' exact component={AddMusic} />
+          <Route path='/add-artist' exact component={AddArtist} />
         </Switch>
       </div>
     </Router>
