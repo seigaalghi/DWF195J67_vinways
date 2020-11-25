@@ -233,11 +233,11 @@ nav.user-nav img {
 /* Content */
 /* ----------- */
 .content-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  max-width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  max-width: 80%;
   margin: 0px auto;
+  padding-bottom: 100px;
 }
 
 .contents {
@@ -245,18 +245,20 @@ nav.user-nav img {
   border-radius: 10px;
   padding: 10px;
   box-sizing: border-box;
-  width: 192px;
-  height: 240px;
+  width: 90%;
   margin: 5px;
+  cursor: pointer;
 }
 
 .contents img {
   width: 100%;
+  margin-bottom: 5px;
 }
 
 .content {
   display: grid;
   grid-template-areas: 'title year' 'artist none';
+  grid-template-rows: 3fr 1fr;
 }
 
 .song-title {
@@ -298,5 +300,55 @@ nav.user-nav img {
 }
 
 .coways {
+  color: #03f387;
+}
+
+/* --------------------------------------- */
+/* Music Player */
+/* --------------------------------------- */
+
+.music-player-container {
+  background-color: #191c35ec;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  width: 100%;
+  display: grid;
+  grid-template-areas: 'free image player none' 'free title player none';
+  grid-template-columns: 1fr 1fr 5fr 2fr;
+  grid-template-rows: 4fr 1fr;
+  padding: 10px;
+  justify-items: center;
+}
+
+div.music-player-container .music-player {
+  grid-area: player;
+  position: relative;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  margin: 0px auto;
+  border-radius: 10px;
+  height: 70px;
+}
+
+div.music-player-container img {
+  grid-area: image;
+  position: absolute;
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid #03f387;
+}
+
+div.music-player-container p {
+  grid-area: title;
+  position: absolute;
+}
+
+#rhap_current-time {
+  color: #03f387;
+}
+
+div.music-player-container .music-player .rhap_main-controls-button {
   color: #03f387;
 }
