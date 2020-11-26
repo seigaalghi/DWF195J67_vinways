@@ -104,6 +104,16 @@ const reducer = (state, action) => {
         ...state,
         artist: [...state.artist, payload],
       };
+    case 'APPROVE':
+      return {
+        ...state,
+        users: state.users.map((user) => (user.email === payload ? { ...user, premium: true, cancel: false, until: new Date().setDate(new Date().getDate() + 30) } : user)),
+      };
+    case 'CANCEL':
+      return {
+        ...state,
+        users: state.users.map((user) => (user.email === payload ? { ...user, cancel: true, until: '', premium: false } : user)),
+      };
     default:
       return state;
   }

@@ -28,15 +28,24 @@ const DropDown = ({ user }) => {
               <Link to='/add-artist' className='dropdown-menu'>
                 Add Artist <i className='fas fa-user-plus'></i>
               </Link>
+              <Link to='/list-trans' className='dropdown-menu'>
+                Purchase(s) <i className='fas fa-comment-dollar'></i>
+              </Link>
+              <div onClick={logout} className='dropdown-menu'>
+                Log Out <i className='fas fa-sign-out-alt' />
+              </div>
+            </div>
+          ) : !state.user.premium ? (
+            <div className='drop'>
+              <Link to='/payment' className='dropdown-menu'>
+                Pay <i className='fas fa-comment-dollar'></i>
+              </Link>
               <div onClick={logout} className='dropdown-menu'>
                 Log Out <i className='fas fa-sign-out-alt' />
               </div>
             </div>
           ) : (
             <div className='drop'>
-              <Link to='/payment' className='dropdown-menu'>
-                Pay <i className='fas fa-user-plus'></i>
-              </Link>
               <div onClick={logout} className='dropdown-menu'>
                 Log Out <i className='fas fa-sign-out-alt' />
               </div>
