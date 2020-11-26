@@ -2,9 +2,8 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppContext } from '../../context/appContext';
 
-const DropDown = ({ user }) => {
+const DropDown = () => {
   const [state, dispatch] = useContext(AppContext);
-  console.log(state);
 
   const [open, setOpen] = useState(false);
 
@@ -17,7 +16,7 @@ const DropDown = ({ user }) => {
     <div className='dropdown-container'>
       <div className='dropdown' onClick={() => setOpen(!open)} onMouseLeave={() => setOpen(false)}>
         <div className='nav-user'>
-          <img src='https://pbs.twimg.com/profile_images/1323299257621700608/9ffagMgF_400x400.jpg' className='user' />
+          <img src='https://pbs.twimg.com/profile_images/1323299257621700608/9ffagMgF_400x400.jpg' className='user' alt='avatar' />
         </div>
         {open ? (
           state.user.admin ? (

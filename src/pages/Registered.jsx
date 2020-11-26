@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import Home from './Home';
 import ListTrans from './ListTrans';
 import Payment from './Payment';
@@ -7,8 +7,11 @@ import AddMusic from './AddMusic';
 import Navbar from '../components/navbar/Navbar';
 import PrivateRoute from '../components/PrivateRoute';
 import AdminRoute from '../components/AdminRoute';
+import MusicPlayer from '../components/home/MusicPlayer';
+import { AppContext } from '../context/appContext';
 
 const Registered = () => {
+  const [state] = useContext(AppContext);
   return (
     <Fragment>
       <Navbar />
@@ -17,6 +20,7 @@ const Registered = () => {
       <AdminRoute path='/list-trans' exact component={ListTrans} />
       <AdminRoute path='/add-music' exact component={AddMusic} />
       <AdminRoute path='/add-artist' exact component={AddArtist} />
+      {state.player.isOpen ? <MusicPlayer /> : null}
     </Fragment>
   );
 };

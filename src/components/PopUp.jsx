@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import App from '../App';
 import { AppContext } from '../context/appContext';
 
 const PopUp = () => {
@@ -13,11 +12,12 @@ const PopUp = () => {
   };
 
   return open ? (
-    <div className='modal' onClick={closeHandler}>
-      <div className={`alert-${type}`}>
+    <div className='modal'>
+      <div className={`alert alert-${type}`}>
         <i className='far fa-times-circle' onClick={closeHandler}></i>
         <p>{text}</p>
       </div>
+      <div className='closer' onClick={closeHandler}></div>
     </div>
   ) : null;
 };

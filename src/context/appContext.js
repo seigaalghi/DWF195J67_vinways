@@ -7,6 +7,9 @@ const initialState = {
   ...data,
   isLogin: false,
   user: {},
+  player: {
+    isOpen: false,
+  },
   alert: {
     text: '',
     open: false,
@@ -19,7 +22,6 @@ const reducer = (state, action) => {
   switch (type) {
     case 'LOGIN':
       const user = state.users.filter((user) => user.email === payload.email && user.password === payload.password);
-      console.log(user);
       console.log(payload);
       if (user.length > 0) {
         return {
@@ -97,22 +99,52 @@ const reducer = (state, action) => {
       return {
         ...state,
         musics: [...state.musics, payload],
+        alert: {
+          type: 'success',
+          text: 'Music Added',
+          open: 'true',
+        },
       };
     case 'ADD_ARTIST':
       console.log(payload);
       return {
         ...state,
         artist: [...state.artist, payload],
+        alert: {
+          type: 'success',
+          text: 'Artist Added',
+          open: 'true',
+        },
       };
     case 'APPROVE':
       return {
         ...state,
         users: state.users.map((user) => (user.email === payload ? { ...user, premium: true, cancel: false, until: new Date().setDate(new Date().getDate() + 30) } : user)),
+        alert: {
+          type: 'success',
+          text: 'Approved',
+          open: 'true',
+        },
       };
     case 'CANCEL':
       return {
         ...state,
         users: state.users.map((user) => (user.email === payload ? { ...user, cancel: true, until: '', premium: false } : user)),
+        alert: {
+          type: 'success',
+          text: 'Canceled',
+          open: 'true',
+        },
+      };
+    case 'SET_PLAYER':
+      return {
+        ...state,
+        player: { isOpen: true, ...payload },
+      };
+    case 'CLOSE_PLAYER':
+      return {
+        ...state,
+        player: { isOpen: false },
       };
     default:
       return state;

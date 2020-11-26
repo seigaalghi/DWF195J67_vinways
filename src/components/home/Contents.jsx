@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/appContext';
 
-const Contents = ({ musics, setPlayer }) => {
+const Contents = () => {
   const [state, dispatch] = useContext(AppContext);
   const handlerMusic = (music) => {
     if (state.user.premium) {
-      setPlayer({ ...music });
+      dispatch({
+        type: 'SET_PLAYER',
+        payload: music,
+      });
     } else {
       dispatch({
         type: 'SET_ALERT',
@@ -20,7 +23,7 @@ const Contents = ({ musics, setPlayer }) => {
   return (
     <div>
       <div className='content-container'>
-        {musics.map((music, index) => (
+        {state.musics.map((music, index) => (
           <div className='contents' key={index} onClick={() => handlerMusic(music)}>
             <img src={music.img} alt={music.title} />
             <div className='content'>

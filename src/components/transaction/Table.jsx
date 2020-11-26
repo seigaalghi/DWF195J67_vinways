@@ -31,7 +31,7 @@ const Table = ({ headers, users, dispatch }) => {
                   <td>{user.id}</td>
                   <td>{user.name}</td>
                   <td>
-                    <img src={user.payment} alt='' />
+                    <img src={user.payment} alt={user.name} />
                   </td>
                   <td>{user.premium ? Math.round((new Date(user.until).getTime() - new Date().getTime()) / (60 * 60 * 24 * 1000)) : '0'} Hari</td>
                   <td>{user.premium ? <span className='color-primary'>Active</span> : <span className='color-danger'>Non-Active</span>}</td>

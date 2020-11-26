@@ -45,8 +45,8 @@ const AddMusic = () => {
 
           <select className='input' name='artist' onChange={changeHandler} value={formData.artist} required placeholder='Song Artist'>
             <option>Select Artist</option>
-            {state.artist.map((art) => (
-              <option value={art.id} key={art.id}>
+            {state.artist.map((art, index) => (
+              <option value={art.id} key={index}>
                 {art.name}
               </option>
             ))}
