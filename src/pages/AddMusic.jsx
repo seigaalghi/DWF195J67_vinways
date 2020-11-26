@@ -1,10 +1,8 @@
-import React, { Fragment, useState } from 'react';
-import Navbar from './Navbar';
-
-// JSON IMPORT
-import musicList from '../JSON/musicList.json';
+import React, { Fragment, useState, useContext } from 'react';
+import { AppContext } from '../context/appContext';
 
 const AddMusic = () => {
+  const [state, dispatch] = useContext(AppContext);
   const [formData, setForMData] = useState({
     title: '',
     img: '',
@@ -19,11 +17,13 @@ const AddMusic = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(formData);
+    dispatch({
+      type: 'ADD_MUSIC',
+      payload: formData,
+    });
   };
   return (
     <Fragment>
-      <Navbar />
       <div className='add-music-container'>
         <h1>Add Music</h1>
         <form onSubmit={submitHandler}>
@@ -45,7 +45,7 @@ const AddMusic = () => {
 
           <select className='input' name='artist' onChange={changeHandler} value={formData.artist} required placeholder='Song Artist'>
             <option>Select Artist</option>
-            {musicList.artist.map((art) => (
+            {state.artist.map((art) => (
               <option value={art.id} key={art.id}>
                 {art.name}
               </option>

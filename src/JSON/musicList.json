@@ -2,52 +2,57 @@
   "users": [
     {
       "id": 1,
-      "username": "seiga",
+      "email": "seigaalghi@gmail.com",
       "premium": true,
       "admin": true,
       "until": "2021/12/30",
       "payment": "https://ecs7.tokopedia.net/img/cache/700/product-1/2020/1/21/5677080/5677080_cf2ef623-8e05-4c90-80ec-0a6edb107d3e_648_648.jpg",
       "password": "abcd1234",
+      "name": "Seiga",
       "cancel": false
     },
     {
       "id": 2,
-      "username": "boci",
+      "email": "boci@gmail.com",
       "premium": true,
       "admin": false,
       "until": "2020/12/30",
       "payment": "https://www.hulusungaiutarakab.go.id/home/wp-content/uploads/2018/01/Bukti-Transfer.jpeg",
       "password": "abcd1234",
+      "name": "Suboci",
       "cancel": false
     },
     {
       "id": 3,
-      "username": "komeng",
+      "email": "komeng@gmail.com",
       "premium": false,
       "admin": false,
       "until": "",
       "payment": "",
       "password": "abcd1234",
+      "name": "Sukomeng",
       "cancel": false
     },
     {
       "id": 4,
-      "username": "bambank",
+      "email": "bambank@gmail.com",
       "premium": false,
       "admin": false,
       "until": "",
       "payment": "https://gotra.sgp1.cdn.digitaloceanspaces.com/web-upload/1527432560_27-05-2018_photo6077615961109801007.jpg",
       "password": "abcd1234",
+      "name": "Bambank Sukoco",
       "cancel": true
     },
     {
       "id": 5,
-      "username": "septo",
+      "email": "septo@gmail.com",
       "premium": false,
       "admin": false,
       "until": "",
       "payment": "https://www.medialaskar.com/foto_berita/6IMG-20200304-WA0015.jpg",
       "password": "abcd1234",
+      "name": "Septo",
       "cancel": false
     }
   ],

@@ -234,17 +234,6 @@ nav.user-nav img {
   margin-right: 5px;
 }
 
-.navbar .nav-user {
-  height: 40px;
-  background-color: aliceblue;
-}
-
-.navbar .user {
-  height: 100%;
-  border-radius: 50%;
-  margin: 0px auto;
-}
-
 .nav-icon {
   display: flex;
   align-items: center;
@@ -253,6 +242,54 @@ nav.user-nav img {
 .navbar a {
   text-decoration: none;
   color: white;
+}
+
+/* ------------------- */
+/* Drop Down */
+/* ------------------- */
+div.dropdown-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  right: 8%;
+  top: 5px;
+}
+
+div.dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+div.drop {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: #191c35;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.dropdown .nav-user {
+  height: 40px;
+}
+
+.dropdown .user {
+  height: 100%;
+  border-radius: 50%;
+  margin: 0px auto;
+}
+
+.dropdown-menu {
+  display: flex;
+  border-bottom: 2px solid white;
+  width: 110px;
+  padding: 5px;
+  justify-content: space-between;
+  cursor: pointer;
 }
 
 /* --------------------------------------- */
@@ -343,6 +380,10 @@ nav.user-nav img {
   color: #03f387;
 }
 
+.payment input {
+  margin: 10px auto;
+}
+
 /* --------------------------------------- */
 /* Music Player */
 /* --------------------------------------- */
@@ -385,11 +426,9 @@ div.music-player-container p {
   position: absolute;
 }
 
-#rhap_current-time {
-  color: #03f387;
-}
-
-div.music-player-container .music-player .rhap_main-controls-button {
+div.music-player-container .music-player .rhap_main-controls-button,
+#rhap_current-time,
+.rhap_time.rhap_total-time {
   color: #03f387;
 }
 
@@ -411,6 +450,12 @@ div.transaction table {
   margin: 20px auto;
   width: 10 0%;
   text-align: center;
+}
+
+div.transaction table button {
+  margin: 5px;
+  text-align: center;
+  font-weight: 600;
 }
 
 /* --------------------------------------- */
@@ -455,4 +500,56 @@ div.add-music-container form select {
 
 div.add-music-container form select option {
   background-color: #00031f;
+}
+
+/* --------------------------------------- */
+/* Modal Alert */
+/* --------------------------------------- */
+
+div.modal {
+  z-index: 900;
+  background-color: rgba(0, 0, 0, 0.644);
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.modal div {
+  position: relative;
+  width: 742px;
+  height: 142;
+  border-radius: 10px;
+  background-color: #191c35;
+  padding: 20px;
+  color: #469f74;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 30px;
+}
+
+div.modal div i {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  font-size: 30px;
+  background-color: #191c35;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.alert-danger {
+  border: 2px solid red;
+}
+
+.alert-success {
+  border: 2px solid #03f387;
+}
+
+.alert-warning {
+  border: 2px solid yellow;
 }

@@ -1,7 +1,8 @@
-import React, { Fragment, useState } from 'react';
-import Navbar from './Navbar';
+import React, { Fragment, useContext, useState } from 'react';
+import { AppContext } from '../context/appContext';
 
 const Payment = () => {
+  const [state, dispatch] = useContext(AppContext);
   const [formData, setFormData] = useState({
     accountnumber: '',
     payment: '',
@@ -11,18 +12,16 @@ const Payment = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // const fileHandler = (e) => {
-  //   setFormData({ ...formData, [e.target.name]: e.target.files[0].name });
-  // };
-
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(formData);
+    dispatch({
+      type: 'PAYMENT',
+      payload: formData,
+    });
   };
 
   return (
     <div className='payment-container'>
-      <Navbar />
       <div className='payment'>
         <h1>Premium</h1>
         <p>
