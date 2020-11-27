@@ -29,7 +29,7 @@ const DropDown = () => {
                 Add Music <i className='fas fa-file-audio'></i>
               </Link>
               <Link to='/add-artist' className='dropdown-menu'>
-                Add Artist <i className='fas fa-user-plus'></i>
+                Add Artist <i className='fas fa-user-tie'></i>
               </Link>
               <Link to='/list-trans' className='dropdown-menu'>
                 Purchase(s) <i className='fas fa-comment-dollar'></i>

@@ -295,7 +295,7 @@ div.drop {
 .dropdown-menu {
   display: flex;
   border-bottom: 2px solid white;
-  width: 110px;
+  width: 140px;
   padding: 5px;
   justify-content: space-between;
   cursor: pointer;
@@ -631,4 +631,37 @@ div.playlist-container {
 
 div.playlist-container h1 {
   margin-bottom: 40px;
+}
+
+/* --------------------------------------- */
+/* Search */
+/* --------------------------------------- */
+
+.form-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  margin-left: 10.4%;
+  margin-bottom: 20px;
+}
+
+.form-group i.fa.fa-search {
+  grid-area: icon;
+  font-size: 30px;
+  text-align: center;
+  margin-left: 10px;
+}
+
+div.form-group input[type='text'] {
+  grid-area: input;
+  height: 30px;
+  width: 100%;
+  margin: 0px auto;
+  background-color: rgba(179, 179, 179, 0.411);
+  border: 0px;
+  padding: 10px;
+  color: white;
+  font-size: 25px;
+  border-radius: 10px;
 }
