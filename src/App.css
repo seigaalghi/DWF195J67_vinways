@@ -628,3 +628,7 @@ div.playlist-container {
   position: absolute;
   width: 90%;
 }
+
+div.playlist-container h1 {
+  margin-bottom: 40px;
+}

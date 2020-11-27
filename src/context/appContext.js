@@ -165,10 +165,10 @@ const reducer = (state, action) => {
       const disliked = state.musics.find((music) => music.id === payload.id);
       const dislikeIndex = disliked.likes.map((like) => like).indexOf(payload.email);
       if (disliked) {
-        disliked.likes.splice(dislikeIndex, 1);
+        const newLikes = disliked.likes.map((dislike, index) => (index !== dislikeIndex ? dislike : null)).filter((like) => like !== null);
         return {
           ...state,
-          musics: state.musics.map((music) => (music.id === payload.id ? disliked : music)),
+          musics: state.musics.map((music) => (music.id === payload.id ? { ...music, likes: newLikes } : music)),
         };
       } else {
         return {
@@ -193,12 +193,14 @@ const reducer = (state, action) => {
     case 'REMOVE_PLAYLIST':
       const removed = state.users.find((user) => user.email === payload.email);
       const removeIndex = removed.playlist.map((play) => play).indexOf(payload.id);
+
       if (removed) {
-        console.log('Ini remove Index', removeIndex);
-        removed.playlist.splice(removeIndex, 1);
+        const newPlaylist = removed.playlist.map((id, index) => (index !== removeIndex ? id : null)).filter((id) => id != null);
+        const newRemoved = { ...removed, playlist: newPlaylist };
         return {
           ...state,
-          users: state.users.map((user) => (user.email === payload.email ? removed : user)),
+          users: state.users.map((user) => (user.email === payload.email ? newRemoved : user)),
+          user: newRemoved,
         };
       } else {
         return {

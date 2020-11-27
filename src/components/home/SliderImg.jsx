@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 
-const SliderImg = ({ tophits }) => {
+const SliderImg = ({ artist }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -14,10 +14,10 @@ const SliderImg = ({ tophits }) => {
     <div>
       <div className='slider-container'>
         <Slider {...settings} className='slider-tag'>
-          {tophits.map((hits, index) => (
+          {artist.map((art, index) => (
             <div className='slider' key={index}>
-              <Link to='#'>
-                <img src={hits.img} alt='' />
+              <Link to={`/artist/${art.id}`}>
+                <img src={art.img} alt='' />
               </Link>
             </div>
           ))}

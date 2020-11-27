@@ -62,30 +62,13 @@
     }
   ],
 
-  "tophits": [
-    {
-      "img": "https://i.ytimg.com/vi/dFLiUiD4pw4/maxresdefault.jpg"
-    },
-    {
-      "img": "https://2.bp.blogspot.com/-kHdVAkaKmZI/WV8zEnlOcII/AAAAAAAAApw/8WFA2Y6yyAkpex7K68yeHkFsDZRy8uvpgCLcBGAs/s1600/Lirik%2BLagu%2BBillfold%2B-%2BTime.jpg"
-    },
-    {
-      "img": "https://i.ytimg.com/vi/BnEjG-AczKE/maxresdefault.jpg"
-    },
-    {
-      "img": "https://i.ytimg.com/vi/4VodI3JCz0Y/maxresdefault.jpg"
-    },
-    {
-      "img": "https://data.whicdn.com/images/338205576/original.jpg"
-    }
-  ],
   "musics": [
     {
       "id": "1",
       "title": "Black Shout",
       "artist": "Roselia",
       "year": "2018",
-      "img": "https://static.wikia.nocookie.net/bandori/images/9/91/BLACK_SHOUT_Blu-ray.jpg",
+      "img": "https://static.wikia.nocookie.net/bandori/images/6/66/Roselia_1st_Single_Cover.jpg",
       "likes": ["seigaalghi@gmail.com"],
       "audio": "https://static.wikia.nocookie.net/bandori/images/6/61/03._BLACK_SHOUT_-Instrumental-.ogg"
     },
@@ -246,16 +229,16 @@
   "artist": [
     {
       "id": "1",
-      "name": "LiSA",
-      "img": "https://img1.ak.crunchyroll.com/i/spire3/adb343ffc1962c7a4062bc79d5a722d61388799204_large.jpg",
+      "name": "Afterglow",
+      "img": "https://i.ytimg.com/vi/88TFoan39vQ/maxresdefault.jpg",
       "age": "24",
-      "type": "solo",
+      "type": "band",
       "start": "2008"
     },
     {
       "id": "2",
-      "name": "fripSide",
-      "img": "https://ecs7.tokopedia.net/img/cache/200-square/product-1/2020/7/1/batch-upload/batch-upload_b17314a0-cc3e-462c-9dec-eada5e18e1e4.jpg",
+      "name": "Sheila on 7",
+      "img": "https://i.ytimg.com/vi/oiJtwXy_DD4/maxresdefault.jpg",
       "age": "28",
       "type": "duo",
       "start": "2011"
@@ -263,10 +246,58 @@
     {
       "id": "3",
       "name": "Roselia",
-      "img": "https://ecs7.tokopedia.net/img/cache/200-square/product-1/2019/1/21/6061512/6061512_602dfbb2-0a13-489b-959a-381d4c9e1967_1906_2560.jpg",
+      "img": "https://www.bseiyuu.com/wp-content/uploads/thumbnail/roseliartokyo-mx-presentsbang-dr.jpg",
       "age": "21",
       "type": "band",
       "start": "2018"
+    },
+    {
+      "id": "4",
+      "name": "Noah",
+      "img": "https://i.ytimg.com/vi/fbwJhh0MVrY/maxresdefault.jpg",
+      "age": "31",
+      "type": "band",
+      "start": "2001"
+    },
+    {
+      "id": "5",
+      "name": "Billfold",
+      "img": "https://2.bp.blogspot.com/-kHdVAkaKmZI/WV8zEnlOcII/AAAAAAAAApw/8WFA2Y6yyAkpex7K68yeHkFsDZRy8uvpgCLcBGAs/s1600/Lirik%2BLagu%2BBillfold%2B-%2BTime.jpg",
+      "age": "28",
+      "type": "band",
+      "start": "2012"
+    },
+    {
+      "id": "6",
+      "name": "Cokelat",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/2/28/Aiu_Ratna_Cokelat_band_1.jpg",
+      "age": "29",
+      "type": "band",
+      "start": "2004"
+    },
+    {
+      "id": "7",
+      "name": "Iwan Fals",
+      "img": "https://i.ytimg.com/vi/M30srW4lQQE/maxresdefault.jpg",
+      "age": "63",
+      "type": "band",
+      "start": "2004"
+    },
+    {
+      "id": "8",
+      "name": "Ada Band",
+      "img": "https://i.ytimg.com/vi/N9nEqewTFWk/maxresdefault.jpg",
+      "age": "32",
+      "type": "band",
+      "start": "2008"
+    },
+    {
+      "id": "9",
+      "name": "Naff",
+      "img": "https://cdn-production-thumbor-vidio.akamaized.net/XS5KyGFstnTbWRHYaTKJnUPXT2E=/1280x720/filters:quality(90)/vidio-web-prod-film/uploads/film/image_landscape/698/essential-naff-62e5a8.jpg",
+      "age": "34",
+      "type": "band",
+      "start": "2004"
     }
   ]
 }

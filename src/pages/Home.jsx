@@ -8,10 +8,10 @@ import { AppContext } from '../context/appContext';
 const Home = () => {
   const [state, dispatch] = useContext(AppContext);
 
-  const { musics, tophits } = state;
+  const { musics, artist } = state;
   return (
     <Fragment>
-      <SliderImg tophits={tophits} />
+      <SliderImg artist={artist} />
       <Contents musics={musics} dispatch={dispatch} />
     </Fragment>
   );

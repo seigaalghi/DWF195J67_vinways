@@ -16,6 +16,7 @@ const Playlist = () => {
   return (
     <Fragment>
       <div className='playlist-container'>
+        <h1>{state.user.name}'s Playlist</h1>
         <Contents musics={musics} dispatch={dispatch} />
       </div>
     </Fragment>
