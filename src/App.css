@@ -320,7 +320,7 @@ div.drop {
 }
 
 .slider img {
-  margin: 0px auto;
+  margin: 10px auto;
   transition: 0.3s;
 }
 .slider img:hover {
@@ -354,9 +354,6 @@ div.drop {
 .contents:hover {
   box-shadow: 0px 0px 5px 5px #03f387;
 }
-.contents:active {
-  transform: scale(1.1);
-}
 
 .contents img {
   width: 100%;
@@ -365,8 +362,9 @@ div.drop {
 
 .content {
   display: grid;
-  grid-template-areas: 'title year' 'artist none';
-  grid-template-rows: 3fr 1fr;
+  grid-template-areas: 'title year' 'artist action';
+  grid-template-rows: 7fr 3fr;
+  grid-template-columns: 4fr 2fr;
 }
 
 .song-title {
@@ -374,6 +372,8 @@ div.drop {
   font-weight: bold;
   font-size: 18px;
   line-height: 22px;
+  max-width: 100%;
+  overflow: hidden;
 }
 .song-year {
   grid-area: year;
@@ -388,6 +388,14 @@ div.drop {
   font-size: 14px;
   line-height: 17px;
   color: #03f387;
+}
+
+.content-action {
+  grid-area: action;
+  text-align: right;
+}
+.content-action i {
+  margin-right: 5px;
 }
 
 /* --------------------------------------- */
@@ -463,12 +471,16 @@ div.music-player-container .music-player .rhap_main-controls-button,
   color: #03f387;
 }
 
-.music-player-container i {
+.music-player-container .action {
   grid-area: none;
   margin: auto;
-  font-size: 40px;
+  font-size: 20px;
   cursor: pointer;
   transition: 0.1s;
+}
+
+.music-player-container .action i {
+  margin-right: 10px;
 }
 
 .music-player-container i:hover {
@@ -605,4 +617,14 @@ div.modal div i {
 
 .alert-warning {
   border: 2px solid yellow;
+}
+
+/* --------------------------------------- */
+/* Playlist */
+/* --------------------------------------- */
+
+div.playlist-container {
+  top: 90px;
+  position: absolute;
+  width: 90%;
 }

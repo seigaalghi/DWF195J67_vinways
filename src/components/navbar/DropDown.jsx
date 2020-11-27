@@ -12,6 +12,7 @@ const DropDown = () => {
       type: 'LOGOUT',
     });
   };
+  console.log(state);
   return (
     <div className='dropdown-container'>
       <div className='dropdown' onClick={() => setOpen(!open)} onMouseLeave={() => setOpen(false)}>
@@ -21,6 +22,9 @@ const DropDown = () => {
         {open ? (
           state.user.admin ? (
             <div className='drop'>
+              <Link to='/playlist' className='dropdown-menu'>
+                Playlist <i className='fas fa-file-audio'></i>
+              </Link>
               <Link to='/add-music' className='dropdown-menu'>
                 Add Music <i className='fas fa-file-audio'></i>
               </Link>
@@ -36,6 +40,9 @@ const DropDown = () => {
             </div>
           ) : !state.user.premium ? (
             <div className='drop'>
+              <Link to='/playlist' className='dropdown-menu'>
+                Playlist <i className='fas fa-file-audio'></i>
+              </Link>
               <Link to='/payment' className='dropdown-menu'>
                 Pay <i className='fas fa-comment-dollar'></i>
               </Link>

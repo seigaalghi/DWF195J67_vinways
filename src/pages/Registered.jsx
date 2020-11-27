@@ -9,6 +9,7 @@ import PrivateRoute from '../components/PrivateRoute';
 import AdminRoute from '../components/AdminRoute';
 import MusicPlayer from '../components/home/MusicPlayer';
 import { AppContext } from '../context/appContext';
+import Playlist from './Playlist';
 
 const Registered = () => {
   const [state] = useContext(AppContext);
@@ -17,6 +18,7 @@ const Registered = () => {
       <Navbar />
       <PrivateRoute path='/' exact component={Home} />
       <PrivateRoute path='/payment' exact component={Payment} />
+      <PrivateRoute path='/playlist/' exact component={Playlist} />
       <AdminRoute path='/list-trans' exact component={ListTrans} />
       <AdminRoute path='/add-music' exact component={AddMusic} />
       <AdminRoute path='/add-artist' exact component={AddArtist} />

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import kaset from '../../img/kaset.svg';
 import kasetlittle from '../../img/kasetlittle.svg';

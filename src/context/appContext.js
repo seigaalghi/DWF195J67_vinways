@@ -9,6 +9,7 @@ const initialState = {
   user: {},
   player: {
     isOpen: false,
+    musicid: '',
   },
   alert: {
     text: '',
@@ -139,13 +140,72 @@ const reducer = (state, action) => {
     case 'SET_PLAYER':
       return {
         ...state,
-        player: { isOpen: true, ...payload },
+        player: { isOpen: true, id: payload },
       };
     case 'CLOSE_PLAYER':
       return {
         ...state,
         player: { isOpen: false },
       };
+    case 'LIKE_MUSIC':
+      const liked = state.musics.find((music) => music.id === payload.id);
+      const like = liked.likes.find((like) => like === payload.email);
+      if (!like) {
+        liked.likes.push(payload.email);
+        return {
+          ...state,
+          musics: state.musics.map((music) => (music.id === payload.id ? liked : music)),
+        };
+      } else {
+        return {
+          ...state,
+        };
+      }
+    case 'DISLIKE_MUSIC':
+      const disliked = state.musics.find((music) => music.id === payload.id);
+      const dislikeIndex = disliked.likes.map((like) => like).indexOf(payload.email);
+      if (disliked) {
+        disliked.likes.splice(dislikeIndex, 1);
+        return {
+          ...state,
+          musics: state.musics.map((music) => (music.id === payload.id ? disliked : music)),
+        };
+      } else {
+        return {
+          ...state,
+        };
+      }
+
+    case 'ADD_PLAYLIST':
+      const added = state.users.find((user) => user.email === payload.email);
+      const add = added.playlist.find((play) => play === payload.id);
+      if (!add) {
+        added.playlist.push(String(payload.id));
+        return {
+          ...state,
+          users: state.users.map((user) => (user.email === payload.email ? added : user)),
+        };
+      } else {
+        return {
+          ...state,
+        };
+      }
+    case 'REMOVE_PLAYLIST':
+      const removed = state.users.find((user) => user.email === payload.email);
+      const removeIndex = removed.playlist.map((play) => play).indexOf(payload.id);
+      if (removed) {
+        console.log('Ini remove Index', removeIndex);
+        removed.playlist.splice(removeIndex, 1);
+        return {
+          ...state,
+          users: state.users.map((user) => (user.email === payload.email ? removed : user)),
+        };
+      } else {
+        return {
+          ...state,
+        };
+      }
+
     default:
       return state;
   }
