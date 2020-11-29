@@ -6,9 +6,10 @@ import DropDown from './DropDown';
 const Navbar = () => {
   const user = (
     <div className='nav-user'>
-      <img src='https://pbs.twimg.com/profile_images/1323299257621700608/9ffagMgF_400x400.jpg' className='user' />
+      <img src='https://pbs.twimg.com/profile_images/1323299257621700608/9ffagMgF_400x400.jpg' alt='logo' className='user' />
     </div>
   );
+
   return (
     <div className='navbar'>
       <div className='navbar-container'>

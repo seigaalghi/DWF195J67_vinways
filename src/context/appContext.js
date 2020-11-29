@@ -1,5 +1,6 @@
 import { createContext, useReducer } from 'react';
 import data from '../JSON/musicList.json';
+import uuid from 'react-uuid';
 
 export const AppContext = createContext();
 
@@ -109,9 +110,14 @@ const reducer = (state, action) => {
       };
     case 'ADD_MUSIC':
       console.log(payload);
+      const newMusic = {
+        ...payload,
+        likes: [],
+        id: uuid(),
+      };
       return {
         ...state,
-        musics: [...state.musics, payload],
+        musics: [...state.musics, newMusic],
         alert: {
           type: 'success',
           text: 'Music Added',
@@ -120,9 +126,13 @@ const reducer = (state, action) => {
       };
     case 'ADD_ARTIST':
       console.log(payload);
+      const newArtist = {
+        ...payload,
+        id: uuid(),
+      };
       return {
         ...state,
-        artist: [...state.artist, payload],
+        artist: [...state.artist, newArtist],
         alert: {
           type: 'success',
           text: 'Artist Added',

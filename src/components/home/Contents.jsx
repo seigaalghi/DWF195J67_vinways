@@ -74,9 +74,19 @@ const Contents = ({ musics, queue }) => {
               <div className='song-artist'>{music.artist}</div>
               <div className='content-action'>
                 {!music.likes.find((like) => like === state.user.email) ? (
-                  <i className='far fa-heart' onClick={(e) => likeHandler(e, music.id)}></i>
+                  <span>
+                    <span className='like' onClick={(e) => likeHandler(e, music.id)}>
+                      {music.likes.length !== 0 ? <span>{music.likes.length}</span> : null}
+                    </span>{' '}
+                    <i className='far fa-heart' onClick={(e) => likeHandler(e, music.id)}></i>
+                  </span>
                 ) : (
-                  <i className='fas fa-heart color-danger' onClick={(e) => dislikeHandler(e, music.id)}></i>
+                  <span>
+                    <span className='like' onClick={(e) => dislikeHandler(e, music.id)}>
+                      {music.likes.length !== 0 ? <span>{music.likes.length}</span> : null}
+                    </span>{' '}
+                    <i className='fas fa-heart color-danger' onClick={(e) => dislikeHandler(e, music.id)}></i>
+                  </span>
                 )}
                 {!state.user.playlist.find((play) => play === music.id) ? (
                   <i className='fas fa-plus' onClick={(e) => addPlaylistHandler(e, music.id)}></i>

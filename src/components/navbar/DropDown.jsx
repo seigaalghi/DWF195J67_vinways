@@ -6,7 +6,7 @@ const DropDown = () => {
   const [state, dispatch] = useContext(AppContext);
 
   const [open, setOpen] = useState(false);
-
+  console.log(state);
   const logout = () => {
     dispatch({
       type: 'LOGOUT',
@@ -39,9 +39,6 @@ const DropDown = () => {
             </div>
           ) : !state.user.premium ? (
             <div className='drop'>
-              <Link to='/playlist' className='dropdown-menu'>
-                Playlist <i className='fas fa-play-circle'></i>
-              </Link>
               <Link to='/payment' className='dropdown-menu'>
                 Pay <i className='fas fa-comment-dollar'></i>
               </Link>
@@ -51,6 +48,9 @@ const DropDown = () => {
             </div>
           ) : (
             <div className='drop'>
+              <Link to='/playlist' className='dropdown-menu'>
+                Playlist <i className='fas fa-play-circle'></i>
+              </Link>
               <div onClick={logout} className='dropdown-menu'>
                 Log Out <i className='fas fa-sign-out-alt' />
               </div>
