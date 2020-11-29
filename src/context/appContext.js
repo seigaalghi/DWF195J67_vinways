@@ -10,6 +10,7 @@ const initialState = {
   player: {
     isOpen: false,
     musicid: '',
+    queue: [],
   },
   alert: {
     text: '',
@@ -44,8 +45,14 @@ const reducer = (state, action) => {
     case 'LOGOUT':
       return {
         ...state,
+        ...data,
         isLogin: false,
         user: {},
+        player: {
+          isOpen: false,
+          musicid: '',
+          queue: [],
+        },
         alert: {
           text: '',
           open: false,
@@ -94,6 +101,11 @@ const reducer = (state, action) => {
               }
             : user
         ),
+        alert: {
+          type: 'success',
+          text: 'Thank you for subscribing to premium, your premium package will be active after our admin approves your transaction, thank you',
+          open: true,
+        },
       };
     case 'ADD_MUSIC':
       console.log(payload);
@@ -140,7 +152,7 @@ const reducer = (state, action) => {
     case 'SET_PLAYER':
       return {
         ...state,
-        player: { isOpen: true, id: payload },
+        player: { isOpen: true, id: payload.id, queue: payload.queue },
       };
     case 'CLOSE_PLAYER':
       return {

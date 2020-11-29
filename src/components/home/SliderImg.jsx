@@ -7,8 +7,13 @@ const SliderImg = ({ artist }) => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    adaptiveHeight: true,
+    centerMode: true,
+    centerPadding: '30%',
   };
   return (
     <div>

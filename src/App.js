@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Registered from './pages/Registered';
 import { AppContextProvider } from './context/appContext';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path='/login' exact component={Login} />
             <Route path='/register' exact component={Register} />
             <Registered />
+            <Route component={NotFound} />
           </Switch>
         </div>
       </Router>

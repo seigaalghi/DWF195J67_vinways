@@ -24,7 +24,7 @@ const Registered = () => {
       <AdminRoute path='/list-trans' exact component={ListTrans} />
       <AdminRoute path='/add-music' exact component={AddMusic} />
       <AdminRoute path='/add-artist' exact component={AddArtist} />
-      {state.player.isOpen ? <MusicPlayer /> : null}
+      {state.player && state.player.isOpen ? <MusicPlayer /> : null}
     </Fragment>
   );
 };

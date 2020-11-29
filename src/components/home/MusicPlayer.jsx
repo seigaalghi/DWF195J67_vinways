@@ -5,17 +5,41 @@ import { AppContext } from '../../context/appContext';
 const MusicPlayer = () => {
   const [player, setPlayer] = useState({});
   const [state, dispatch] = useContext(AppContext);
+  const [queue, setQueue] = useState([]);
+  const [playing, setPlaying] = useState('');
 
   useEffect(() => {
     if (state.player.id) {
-      const music = state.musics.find((music) => music.id === state.player.id);
-      setPlayer(music);
+      setPlaying(state.player.id);
     }
-  }, [state.player.id]);
+    if (state.player.queue) {
+      setQueue(state.player.queue);
+    }
+  }, [state.player.id, state.player.queue]);
+
+  useEffect(() => {
+    const music = state.musics.find((music) => music.id === playing);
+    setPlayer(music);
+  }, [playing, state.musics]);
+
+  const nextHandler = () => {
+    const index = queue.map((que) => que).indexOf(playing);
+    if (index !== queue.length - 1) {
+      setPlaying(queue[index + 1]);
+    }
+  };
+
+  const prevHandler = () => {
+    const index = queue.map((que) => que).indexOf(playing);
+    if (index !== 0) {
+      setPlaying(queue[index - 1]);
+    } else {
+      setPlaying(queue[index]);
+    }
+  };
 
   const likeHandler = (e, id) => {
     e.stopPropagation();
-    console.log(e);
     dispatch({
       type: 'LIKE_MUSIC',
       payload: {
@@ -26,7 +50,6 @@ const MusicPlayer = () => {
   };
   const dislikeHandler = (e, id) => {
     e.stopPropagation();
-    console.log(e);
     dispatch({
       type: 'DISLIKE_MUSIC',
       payload: {
@@ -62,7 +85,7 @@ const MusicPlayer = () => {
       <p>{player.title ? player.title : ''}</p>
       {player.img ? <img src={player.img ? player.img : ''} alt='' /> : ''}
 
-      <H5AudioPlayer src={player.audio ? player.audio : ''} className='music-player' />
+      <H5AudioPlayer src={player.audio ? player.audio : ''} className='music-player' onClickNext={nextHandler} onClickPrevious={prevHandler} showSkipControls={true} onEnded={nextHandler} />
       <div className='action'>
         {!player.likes.find((like) => like === state.user.email) ? (
           <i className='far fa-heart' onClick={(e) => likeHandler(e, player.id)}></i>

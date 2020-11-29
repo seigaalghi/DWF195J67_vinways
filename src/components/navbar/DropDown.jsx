@@ -12,7 +12,6 @@ const DropDown = () => {
       type: 'LOGOUT',
     });
   };
-  console.log(state);
   return (
     <div className='dropdown-container'>
       <div className='dropdown' onClick={() => setOpen(!open)} onMouseLeave={() => setOpen(false)}>

@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/appContext';
 
-const Contents = ({ musics }) => {
+const Contents = ({ musics, queue }) => {
   const [state, dispatch] = useContext(AppContext);
   const handlerMusic = (id) => {
     if (state.user.premium) {
       dispatch({
         type: 'SET_PLAYER',
-        payload: id,
+        payload: { id: id, queue: queue },
       });
     } else {
       dispatch({

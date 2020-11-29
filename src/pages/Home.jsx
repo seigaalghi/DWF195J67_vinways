@@ -17,17 +17,14 @@ const Home = () => {
     setSearch(music);
   };
 
-  console.log(search);
-
   return (
     <Fragment>
       <SliderImg artist={artist} />
       <div className='form-group'>
         <input type='text' placeholder={`Search..`} onChange={searchhandler} />
-        <i class='fa fa-search'></i>
+        <i className='fa fa-search'></i>
       </div>
-
-      <Contents musics={search.length > 0 ? search : musics} dispatch={dispatch} />
+      <Contents musics={search.length > 0 ? search : musics} queue={state.musics.map((music) => music.id)} dispatch={dispatch} />
     </Fragment>
   );
 };

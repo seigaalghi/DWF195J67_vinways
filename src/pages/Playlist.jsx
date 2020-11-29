@@ -11,13 +11,11 @@ const Playlist = () => {
     setMusics(music);
   }, [state.user]);
 
-  console.log(musics);
-
   return (
     <Fragment>
       <div className='playlist-container'>
         <h1>{state.user.name}'s Playlist</h1>
-        <Contents musics={musics} dispatch={dispatch} />
+        <Contents musics={musics} queue={state.user.playlist} dispatch={dispatch} />
       </div>
     </Fragment>
   );

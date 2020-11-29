@@ -11,15 +11,15 @@ const Artist = () => {
   useEffect(() => {
     const music = state.musics.map((music) => (music.artistId === artistId ? music : null)).filter((music) => music !== null);
     setMusics(music);
-  }, [state.user]);
+  }, [state.user, artistId, state.musics]);
 
   console.log(musics);
 
   return (
     <Fragment>
       <div className='playlist-container'>
-        <h1>{state.artist.find((art) => art.id == artistId).name}'s Song(s)</h1>
-        <Contents musics={musics} dispatch={dispatch} />
+        <h1>{state.artist.find((art) => art.id === artistId).name}'s Song(s)</h1>
+        <Contents musics={musics} queue={state.musics.map((music) => (music.artistId === artistId ? music.id : null)).filter((music) => music !== null)} dispatch={dispatch} />
       </div>
     </Fragment>
   );
