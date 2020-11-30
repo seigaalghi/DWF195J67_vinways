@@ -94,6 +94,9 @@ h1 {
   margin: 10px auto;
   cursor: pointer;
   overflow: hidden;
+  text-overflow: ellipsis;
+  width: 350px;
+  white-space: nowrap;
 }
 
 .color-primary {
@@ -198,10 +201,12 @@ nav.user-nav {
   align-items: center;
   font-family: normal;
   font-size: 30px;
+  cursor: pointer;
 }
 
 nav.user-nav img {
   margin-right: 5px;
+  cursor: pointer;
 }
 
 /* --------------------------------------- */
@@ -275,6 +280,7 @@ div.drop {
 .dropdown .nav-user {
   height: 40px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .dropdown .nav-user:hover {
@@ -434,6 +440,7 @@ div.slick-center img {
 
 .payment input {
   margin: 10px auto;
+  text-align: center;
 }
 
 /* --------------------------------------- */

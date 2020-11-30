@@ -36,7 +36,7 @@ const AddArtist = () => {
   return (
     <Fragment>
       <div className='add-music-container'>
-        <h1>Add Music</h1>
+        <h1>Add Artist</h1>
         <form onSubmit={submitHandler}>
           <input type='text' className='input' name='name' onChange={changeHandler} value={formData.name} required placeholder='Artist Name' />
 
