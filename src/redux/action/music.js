@@ -1,6 +1,10 @@
 import axios from 'axios';
-import { LOAD_ARTISTS, LOAD_ARTIST, LOAD_MUSICS, MUSIC_ERROR, MUSIC_CLEAN } from '../types';
+import { LOAD_ARTISTS, LOAD_ARTIST, LOAD_MUSICS, MUSIC_ERROR, MUSIC_CLEAN, ADD_LIKE, REMOVE_LIKE, ADD_PLAYLIST } from '../types';
 import { setAlert } from './alert';
+
+// =========================================================================================
+// LOAD MUSIC
+// =========================================================================================
 
 export const loadMusics = () => async (dispatch) => {
   try {
@@ -21,6 +25,10 @@ export const loadMusics = () => async (dispatch) => {
   }
 };
 
+// =========================================================================================
+// LOAD ARTISTS
+// =========================================================================================
+
 export const loadArtists = () => async (dispatch) => {
   try {
     const res = await axios.get('http://localhost:5000/api/v1/artists');
@@ -39,6 +47,10 @@ export const loadArtists = () => async (dispatch) => {
     });
   }
 };
+
+// =========================================================================================
+// LOAD ARTIST
+// =========================================================================================
 
 export const loadArtist = (id) => async (dispatch) => {
   try {
@@ -59,6 +71,10 @@ export const loadArtist = (id) => async (dispatch) => {
   }
 };
 
+// =========================================================================================
+// CLEAN MUSIC
+// =========================================================================================
+
 export const cleanMusic = () => (dispatch) => {
   try {
     dispatch({
@@ -66,5 +82,74 @@ export const cleanMusic = () => (dispatch) => {
     });
   } catch (error) {
     console.log(error);
+  }
+};
+
+// =========================================================================================
+// ADD LIKE
+// =========================================================================================
+
+export const addLike = (id) => async (dispatch) => {
+  try {
+    const res = await axios.post(`http://localhost:5000/api/v1/music/like/${id}`);
+    dispatch({
+      type: ADD_LIKE,
+      payload: { ...res.data.data, id },
+    });
+  } catch (error) {
+    if (error.response) {
+      if (error.response.data.message) {
+        dispatch(setAlert(error.response.data.message, 'danger'));
+      }
+    }
+    dispatch({
+      type: MUSIC_ERROR,
+    });
+  }
+};
+
+// =========================================================================================
+// REMOVE LIKE
+// =========================================================================================
+
+export const removeLike = (musicId, userId) => async (dispatch) => {
+  try {
+    await axios.delete(`http://localhost:5000/api/v1/music/like/${musicId}`);
+    dispatch({
+      type: REMOVE_LIKE,
+      payload: { musicId, userId },
+    });
+  } catch (error) {
+    if (error.response) {
+      if (error.response.data.message) {
+        dispatch(setAlert(error.response.data.message, 'danger'));
+      }
+    }
+    dispatch({
+      type: MUSIC_ERROR,
+    });
+  }
+};
+
+// =========================================================================================
+// ADD PLAYLIST
+// =========================================================================================
+
+export const addPlaylist = (id) => async (dispatch) => {
+  try {
+    const res = await axios.post(`http://localhost:5000/api/v1/user/playlist/${id}`);
+    dispatch({
+      type: ADD_PLAYLIST,
+      payload: { ...res.data.data, id },
+    });
+  } catch (error) {
+    if (error.response) {
+      if (error.response.data.message) {
+        dispatch(setAlert(error.response.data.message, 'danger'));
+      }
+    }
+    dispatch({
+      type: MUSIC_ERROR,
+    });
   }
 };

@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { setAlert } from '../../redux/action/alert';
 import ReactLoading from 'react-loading';
 import { setPlayer, setQueue } from '../../redux/action/player';
+import { addLike, removeLike } from '../../redux/action/music';
+import { addPlaylist, removePlaylist } from '../../redux/action/auth';
 
-const Contents = ({ musics, queue, music, auth, setAlert, setPlayer, setQueue }) => {
+const Contents = ({ musics, queue, auth, setAlert, setPlayer, setQueue, addLike, removeLike, addPlaylist, removePlaylist }) => {
   const handlerMusic = (music) => {
     if (auth.user.premium) {
       setPlayer(music);
@@ -15,16 +17,20 @@ const Contents = ({ musics, queue, music, auth, setAlert, setPlayer, setQueue })
   };
   const likeHandler = (e, id) => {
     e.stopPropagation();
+    addLike(id);
   };
   const dislikeHandler = (e, id) => {
     e.stopPropagation();
+    removeLike(id, auth.user.id);
   };
 
   const addPlaylistHandler = (e, id) => {
     e.stopPropagation();
+    addPlaylist(id);
   };
   const removePlaylistHandler = (e, id) => {
     e.stopPropagation();
+    removePlaylist(id);
   };
 
   return !musics || !auth.user ? (
@@ -43,19 +49,19 @@ const Contents = ({ musics, queue, music, auth, setAlert, setPlayer, setQueue })
                 {!music.likes.find((like) => like.id === auth.user.id) ? (
                   <span>
                     <span className='like' onClick={(e) => likeHandler(e, music.id)}>
-                      {music.likes.length !== 0 ? <span>{music.likes.length}</span> : null}
+                      {music.likes.length > 0 ? <span>{music.likes.length}</span> : null}
                     </span>{' '}
                     <i className='far fa-heart' onClick={(e) => likeHandler(e, music.id)}></i>
                   </span>
                 ) : (
                   <span>
                     <span className='like' onClick={(e) => dislikeHandler(e, music.id)}>
-                      {music.likes.length !== 0 ? <span>{music.likes.length}</span> : null}
+                      {music.likes.length > 0 ? <span>{music.likes.length}</span> : null}
                     </span>{' '}
                     <i className='fas fa-heart color-danger' onClick={(e) => dislikeHandler(e, music.id)}></i>
                   </span>
                 )}
-                {!auth.user.playlists.filter((play) => play === music.id) ? (
+                {!auth.user.playlists.find((play) => play.id === music.id) ? (
                   <i className='fas fa-plus' onClick={(e) => addPlaylistHandler(e, music.id)}></i>
                 ) : (
                   <i className='fas fa-plus color-primary' onClick={(e) => removePlaylistHandler(e, music.id)}></i>
@@ -71,7 +77,6 @@ const Contents = ({ musics, queue, music, auth, setAlert, setPlayer, setQueue })
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  music: state.music,
 });
 
-export default connect(mapStateToProps, { setAlert, setPlayer, setQueue })(Contents);
+export default connect(mapStateToProps, { setAlert, setPlayer, setQueue, addLike, removeLike, addPlaylist, removePlaylist })(Contents);

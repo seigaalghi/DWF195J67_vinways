@@ -1,4 +1,4 @@
-const { LOAD_MUSICS, MUSIC_ERROR, CLEAN_MUSIC, LOAD_ARTISTS, LOAD_ARTIST } = require('../types');
+const { LOAD_MUSICS, MUSIC_ERROR, CLEAN_MUSIC, LOAD_ARTISTS, LOAD_ARTIST, ADD_LIKE, REMOVE_LIKE } = require('../types');
 
 const initialState = {
   loading: true,
@@ -42,6 +42,19 @@ const musicReducer = (state = initialState, action) => {
         ...payload,
         loading: false,
       };
+    case ADD_LIKE:
+      return {
+        ...state,
+        musics: state.musics.map((music) => (music.id === payload.id ? payload.like : music)),
+      };
+    case REMOVE_LIKE:
+      return {
+        ...state,
+        musics: state.musics.map((music) =>
+          music.id === payload.musicId ? { ...music, likes: music.likes.filter((like) => like.id !== payload.userId) } : music
+        ),
+      };
+
     default:
       return state;
   }

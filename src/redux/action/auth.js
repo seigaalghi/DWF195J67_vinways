@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_ERROR, LOAD_USER, LOGIN_SUCCESS, REGISTER_SUCCESS, LOGOUT } from '../types';
+import { AUTH_ERROR, LOAD_USER, LOGIN_SUCCESS, REGISTER_SUCCESS, LOGOUT, ADD_PLAYLIST, REMOVE_PLAYLIST } from '../types';
 import { setAlert } from './alert';
 import setAuth from '../utility/setAuthToken';
 
@@ -100,5 +100,45 @@ export const userLogout = () => async (dispatch) => {
     dispatch({
       type: AUTH_ERROR,
     });
+  }
+};
+
+// =========================================================================================
+// ADD PLAYLIST
+// =========================================================================================
+
+export const addPlaylist = (id) => async (dispatch) => {
+  try {
+    const res = await axios.post(`http://localhost:5000/api/v1/user/playlist/${id}`);
+    dispatch({
+      type: ADD_PLAYLIST,
+      payload: res.data.data,
+    });
+  } catch (error) {
+    if (error.response) {
+      if (error.response.data.message) {
+        dispatch(setAlert(error.response.data.message, 'danger'));
+      }
+    }
+  }
+};
+
+// =========================================================================================
+// REMOVE
+// =========================================================================================
+
+export const removePlaylist = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`http://localhost:5000/api/v1/user/playlist/${id}`);
+    dispatch({
+      type: REMOVE_PLAYLIST,
+      payload: res.data.data,
+    });
+  } catch (error) {
+    if (error.response) {
+      if (error.response.data.message) {
+        dispatch(setAlert(error.response.data.message, 'danger'));
+      }
+    }
   }
 };

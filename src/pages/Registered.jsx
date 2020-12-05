@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment } from 'react';
 import Home from './Home';
 import ListTrans from './ListTrans';
 import Payment from './Payment';
@@ -8,13 +8,11 @@ import Navbar from '../components/navbar/Navbar';
 import PrivateRoute from '../components/PrivateRoute';
 import AdminRoute from '../components/AdminRoute';
 import MusicPlayer from '../components/home/MusicPlayer';
-import { AppContext } from '../context/appContext';
 import Playlist from './Playlist';
 import Artist from './Artist';
 import { connect } from 'react-redux';
 
 const Registered = ({ player }) => {
-  const [state] = useContext(AppContext);
   return (
     <Fragment>
       <Navbar />

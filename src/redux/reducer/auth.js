@@ -1,4 +1,4 @@
-import { AUTH_ERROR, LOAD_USER, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILED, REGISTER_SUCCESS } from '../types';
+import { AUTH_ERROR, LOAD_USER, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILED, REGISTER_SUCCESS, ADD_PLAYLIST, REMOVE_PLAYLIST } from '../types';
 
 const initialState = {
   token: localStorage.getItem('token'),
@@ -49,6 +49,16 @@ const authReducer = (state = initialState, action) => {
       localStorage.setItem('token', payload.token);
       return {
         ...state,
+      };
+    case ADD_PLAYLIST:
+      return {
+        ...state,
+        user: payload.user,
+      };
+    case REMOVE_PLAYLIST:
+      return {
+        ...state,
+        user: payload.user,
       };
     default:
       return state;

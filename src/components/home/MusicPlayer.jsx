@@ -1,9 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import H5AudioPlayer from 'react-h5-audio-player';
 import { connect } from 'react-redux';
 import { closePlayer, setPlayer } from '../../redux/action/player';
+import { addLike, removeLike } from '../../redux/action/music';
+import { addPlaylist, removePlaylist } from '../../redux/action/auth';
 
-const MusicPlayer = ({ player: { music, queue, loading }, auth: { user }, setPlayer, closePlayer }) => {
+const MusicPlayer = ({
+  player: { music, queue, loading },
+  musics,
+  auth: { user },
+  setPlayer,
+  closePlayer,
+  addLike,
+  removeLike,
+  addPlaylist,
+  removePlaylist,
+}) => {
+  const [musicPlayer, setMusicPlayer] = useState({});
+
+  useEffect(() => {
+    if (music) {
+      const player = async () => {
+        const res = await musics.find((msc) => msc.id === music.id);
+        setMusicPlayer(res);
+      };
+      console.log('executed');
+      player();
+    }
+  }, [musics, music]);
+
   const nextHandler = () => {
     const index = queue.map((que) => que.id).indexOf(music.id);
     if (index !== queue.length - 1) {
@@ -22,25 +47,29 @@ const MusicPlayer = ({ player: { music, queue, loading }, auth: { user }, setPla
 
   const likeHandler = (e, id) => {
     e.stopPropagation();
+    addLike(id);
   };
   const dislikeHandler = (e, id) => {
     e.stopPropagation();
+    removeLike(id, user.id);
   };
 
   const addPlaylistHandler = (e, id) => {
     e.stopPropagation();
+    addPlaylist(id);
   };
   const removePlaylistHandler = (e, id) => {
     e.stopPropagation();
+    removePlaylist(id);
   };
 
-  return music && !loading ? (
+  return music && musicPlayer.likes && !loading ? (
     <div className='music-player-container'>
-      <p>{music.title ? music.title : ''}</p>
-      {music.img ? <img src={music.img ? `http://localhost:5000/uploads/${music.img}` : ''} alt={music.title} /> : ''}
+      <p>{musicPlayer.title ? musicPlayer.title : ''}</p>
+      {musicPlayer.img ? <img src={musicPlayer.img ? `http://localhost:5000/uploads/${musicPlayer.img}` : ''} alt={musicPlayer.title} /> : ''}
 
       <H5AudioPlayer
-        src={music.audio ? `http://localhost:5000/uploads/${music.audio}` : ''}
+        src={musicPlayer.audio ? `http://localhost:5000/uploads/${musicPlayer.audio}` : ''}
         className='music-player'
         onClickNext={nextHandler}
         onClickPrevious={prevHandler}
@@ -48,16 +77,16 @@ const MusicPlayer = ({ player: { music, queue, loading }, auth: { user }, setPla
         onEnded={nextHandler}
       />
       <div className='action'>
-        {!music.likes.find((like) => like.id === user.id) ? (
-          <i className='far fa-heart' onClick={(e) => likeHandler(e, music.id)}></i>
+        {!musicPlayer.likes.find((like) => like.id === user.id) ? (
+          <i className='far fa-heart' onClick={(e) => likeHandler(e, musicPlayer.id)}></i>
         ) : (
-          <i className='fas fa-heart color-danger' onClick={(e) => dislikeHandler(e, music.id)}></i>
+          <i className='fas fa-heart color-danger' onClick={(e) => dislikeHandler(e, musicPlayer.id)}></i>
         )}
 
-        {!user.playlists.find((play) => play.id === music.id) ? (
-          <i className='fas fa-plus' onClick={(e) => addPlaylistHandler(e, music.id)}></i>
+        {!user.playlists.find((play) => play.id === musicPlayer.id) ? (
+          <i className='fas fa-plus' onClick={(e) => addPlaylistHandler(e, musicPlayer.id)}></i>
         ) : (
-          <i className='fas fa-plus color-primary' onClick={(e) => removePlaylistHandler(e, music.id)}></i>
+          <i className='fas fa-plus color-primary' onClick={(e) => removePlaylistHandler(e, musicPlayer.id)}></i>
         )}
 
         <i
@@ -73,6 +102,7 @@ const MusicPlayer = ({ player: { music, queue, loading }, auth: { user }, setPla
 const mapStateToProps = (state) => ({
   player: state.player,
   auth: state.auth,
+  musics: state.music.musics,
 });
 
-export default connect(mapStateToProps, { closePlayer, setPlayer })(MusicPlayer);
+export default connect(mapStateToProps, { closePlayer, setPlayer, addLike, removeLike, addPlaylist, removePlaylist })(MusicPlayer);

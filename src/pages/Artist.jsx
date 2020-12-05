@@ -28,7 +28,7 @@ const Artist = ({ music: { artist, loading }, loadArtist }) => {
         </div>
 
         <h1>{artist.name}'s Song(s)</h1>
-        <Contents musics={artist.musics} queue={artist.musics.map((music) => music.id)} />
+        <Contents musics={artist.musics} queue={artist.musics} />
       </div>
     </Fragment>
   );
