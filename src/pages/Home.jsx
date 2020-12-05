@@ -1,32 +1,44 @@
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import Contents from '../components/home/Contents';
 import SliderImg from '../components/home/SliderImg';
-import { AppContext } from '../context/appContext';
+import ReactLoading from 'react-loading';
+import { cleanMusic, loadArtists, loadMusics } from '../redux/action/music';
+import { connect } from 'react-redux';
 
-// JSON IMPORT
-
-const Home = () => {
-  const [state, dispatch] = useContext(AppContext);
-
-  const { musics, artist } = state;
+const Home = ({ loadMusics, loadArtists, cleanMusic, music: { loading, artists, musics } }) => {
+  useEffect(() => {
+    loadMusics();
+    loadArtists();
+    return () => {
+      cleanMusic();
+    };
+  }, []);
 
   const [search, setSearch] = useState([]);
 
   const searchhandler = (e) => {
-    const music = state.musics.map((music) => (music.title.toLowerCase().includes(e.target.value.toLowerCase()) ? music : null)).filter((music) => music !== null);
-    setSearch(music);
+    const musics = musics
+      .map((music) => (music.title.toLowerCase().includes(e.target.value.toLowerCase()) ? music : null))
+      .filter((music) => music !== null);
+    setSearch(musics);
   };
 
-  return (
+  return !musics || !artists || loading ? (
+    <ReactLoading type={'spinningBubbles'} color={'grey'} style={{ margin: '50px auto', width: '50px' }} />
+  ) : (
     <Fragment>
-      <SliderImg artist={artist} />
+      <SliderImg artist={artists} />
       <div className='form-group'>
         <input type='text' placeholder={`Search..`} onChange={searchhandler} />
         <i className='fa fa-search'></i>
       </div>
-      <Contents musics={search.length > 0 ? search : musics} queue={state.musics.map((music) => music.id)} dispatch={dispatch} />
+      <Contents musics={search.length > 0 ? search : musics} queue={musics} />
     </Fragment>
   );
 };
 
-export default Home;
+const mapStateToProps = (state) => ({
+  music: state.music,
+});
+
+export default connect(mapStateToProps, { loadMusics, loadArtists, cleanMusic })(Home);

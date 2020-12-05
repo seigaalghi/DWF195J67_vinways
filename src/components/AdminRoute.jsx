@@ -1,11 +1,12 @@
 import { Route, Redirect } from 'react-router-dom';
-import { useContext } from 'react';
-import { AppContext } from '../context/appContext';
+import { connect } from 'react-redux';
 
-const AdminRoute = ({ component: Component, ...rest }) => {
-  const [state] = useContext(AppContext);
-
-  return <Route {...rest} render={(props) => (state.user.admin && state.isLogin ? <Component {...props} /> : <Redirect to='/' />)} />;
+const AdminRoute = ({ component: Component, ...rest }, auth) => {
+  return <Route {...rest} render={(props) => (auth.user.premium && auth.isAuthenticated ? <Component {...props} /> : <Redirect to='/' />)} />;
 };
 
-export default AdminRoute;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, {})(AdminRoute);

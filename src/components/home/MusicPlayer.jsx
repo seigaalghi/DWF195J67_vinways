@@ -1,114 +1,78 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React from 'react';
 import H5AudioPlayer from 'react-h5-audio-player';
-import { AppContext } from '../../context/appContext';
+import { connect } from 'react-redux';
+import { closePlayer, setPlayer } from '../../redux/action/player';
 
-const MusicPlayer = () => {
-  const [player, setPlayer] = useState({});
-  const [state, dispatch] = useContext(AppContext);
-  const [queue, setQueue] = useState([]);
-  const [playing, setPlaying] = useState('');
-
-  useEffect(() => {
-    if (state.player.id) {
-      setPlaying(state.player.id);
-    }
-    if (state.player.queue) {
-      setQueue(state.player.queue);
-    }
-  }, [state.player.id, state.player.queue]);
-
-  useEffect(() => {
-    const music = state.musics.find((music) => music.id === playing);
-    setPlayer(music);
-  }, [playing, state.musics]);
-
+const MusicPlayer = ({ player: { music, queue, loading }, auth: { user }, setPlayer, closePlayer }) => {
   const nextHandler = () => {
-    const index = queue.map((que) => que).indexOf(playing);
+    const index = queue.map((que) => que.id).indexOf(music.id);
     if (index !== queue.length - 1) {
-      setPlaying(queue[index + 1]);
+      setPlayer(queue[index + 1]);
     }
   };
 
   const prevHandler = () => {
-    const index = queue.map((que) => que).indexOf(playing);
+    const index = queue.map((que) => que.id).indexOf(music.id);
     if (index !== 0) {
-      setPlaying(queue[index - 1]);
+      setPlayer(queue[index - 1]);
     } else {
-      setPlaying(queue[index]);
+      setPlayer(queue[index]);
     }
   };
 
   const likeHandler = (e, id) => {
     e.stopPropagation();
-    dispatch({
-      type: 'LIKE_MUSIC',
-      payload: {
-        id: id,
-        email: state.user.email,
-      },
-    });
   };
   const dislikeHandler = (e, id) => {
     e.stopPropagation();
-    dispatch({
-      type: 'DISLIKE_MUSIC',
-      payload: {
-        id: id,
-        email: state.user.email,
-      },
-    });
   };
 
   const addPlaylistHandler = (e, id) => {
     e.stopPropagation();
-    dispatch({
-      type: 'ADD_PLAYLIST',
-      payload: {
-        id: id,
-        email: state.user.email,
-      },
-    });
   };
   const removePlaylistHandler = (e, id) => {
     e.stopPropagation();
-    dispatch({
-      type: 'REMOVE_PLAYLIST',
-      payload: {
-        id: id,
-        email: state.user.email,
-      },
-    });
   };
 
-  return player && player.likes && state.user ? (
+  return music && !loading ? (
     <div className='music-player-container'>
-      <p>{player.title ? player.title : ''}</p>
-      {player.img ? <img src={player.img ? player.img : ''} alt='' /> : ''}
+      <p>{music.title ? music.title : ''}</p>
+      {music.img ? <img src={music.img ? `http://localhost:5000/uploads/${music.img}` : ''} alt={music.title} /> : ''}
 
-      <H5AudioPlayer src={player.audio ? player.audio : ''} className='music-player' onClickNext={nextHandler} onClickPrevious={prevHandler} showSkipControls={true} onEnded={nextHandler} />
+      <H5AudioPlayer
+        src={music.audio ? `http://localhost:5000/uploads/${music.audio}` : ''}
+        className='music-player'
+        onClickNext={nextHandler}
+        onClickPrevious={prevHandler}
+        showSkipControls={true}
+        onEnded={nextHandler}
+      />
       <div className='action'>
-        {!player.likes.find((like) => like === state.user.email) ? (
-          <i className='far fa-heart' onClick={(e) => likeHandler(e, player.id)}></i>
+        {!music.likes.find((like) => like.id === user.id) ? (
+          <i className='far fa-heart' onClick={(e) => likeHandler(e, music.id)}></i>
         ) : (
-          <i className='fas fa-heart color-danger' onClick={(e) => dislikeHandler(e, player.id)}></i>
+          <i className='fas fa-heart color-danger' onClick={(e) => dislikeHandler(e, music.id)}></i>
         )}
 
-        {!state.user.playlist.find((play) => play === player.id) ? (
-          <i className='fas fa-plus' onClick={(e) => addPlaylistHandler(e, player.id)}></i>
+        {!user.playlists.find((play) => play.id === music.id) ? (
+          <i className='fas fa-plus' onClick={(e) => addPlaylistHandler(e, music.id)}></i>
         ) : (
-          <i className='fas fa-plus color-primary' onClick={(e) => removePlaylistHandler(e, player.id)}></i>
+          <i className='fas fa-plus color-primary' onClick={(e) => removePlaylistHandler(e, music.id)}></i>
         )}
 
         <i
           className='fas fa-times'
           onClick={() => {
-            dispatch({
-              type: 'CLOSE_PLAYER',
-            });
+            closePlayer();
           }}></i>
       </div>
     </div>
   ) : null;
 };
 
-export default MusicPlayer;
+const mapStateToProps = (state) => ({
+  player: state.player,
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { closePlayer, setPlayer })(MusicPlayer);

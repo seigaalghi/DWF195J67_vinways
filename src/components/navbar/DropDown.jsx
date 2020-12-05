@@ -1,25 +1,27 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AppContext } from '../../context/appContext';
+import { connect } from 'react-redux';
+import { userLogout } from '../../redux/action/auth';
 
-const DropDown = () => {
-  const [state, dispatch] = useContext(AppContext);
-
+const DropDown = ({ auth: { loading, user }, userLogout }) => {
   const [open, setOpen] = useState(false);
-  console.log(state);
   const logout = () => {
-    dispatch({
-      type: 'LOGOUT',
-    });
+    userLogout();
   };
-  return (
+  return loading || !user ? (
+    <h4>Loading</h4>
+  ) : (
     <div className='dropdown-container'>
       <div className='dropdown' onClick={() => setOpen(!open)} onMouseLeave={() => setOpen(false)}>
         <div className='nav-user'>
-          <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKJDaIp-Y7qVXGu6LTeoxAiaRdJAJhp9z0yw&usqp=CAU' className='user' alt='avatar' />
+          <img
+            src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKJDaIp-Y7qVXGu6LTeoxAiaRdJAJhp9z0yw&usqp=CAU'
+            className='user'
+            alt='avatar'
+          />
         </div>
         {open ? (
-          state.user.admin ? (
+          user.admin ? (
             <div className='drop'>
               <Link to='/playlist' className='dropdown-menu'>
                 Playlist <i className='fas fa-play-circle'></i>
@@ -37,7 +39,7 @@ const DropDown = () => {
                 Log Out <i className='fas fa-sign-out-alt' />
               </div>
             </div>
-          ) : !state.user.premium ? (
+          ) : !user.premium ? (
             <div className='drop'>
               <Link to='/payment' className='dropdown-menu'>
                 Pay <i className='fas fa-comment-dollar'></i>
@@ -48,6 +50,9 @@ const DropDown = () => {
             </div>
           ) : (
             <div className='drop'>
+              <Link to='/payment' className='dropdown-menu'>
+                Pay <i className='fas fa-comment-dollar'></i>
+              </Link>
               <Link to='/playlist' className='dropdown-menu'>
                 Playlist <i className='fas fa-play-circle'></i>
               </Link>
@@ -62,4 +67,8 @@ const DropDown = () => {
   );
 };
 
-export default DropDown;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { userLogout })(DropDown);

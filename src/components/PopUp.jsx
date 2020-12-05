@@ -1,25 +1,29 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../context/appContext';
+import React from 'react';
+import { connect } from 'react-redux';
+import { removeAlert } from '../redux/action/alert';
 
-const PopUp = () => {
-  const [state, dispatch] = useContext(AppContext);
-  const { open, text, type } = state.alert;
+const PopUp = ({ alert, removeAlert }) => {
+  const { message, alertType, isOpen } = alert;
 
   const closeHandler = () => {
-    dispatch({
-      type: 'REMOVE_ALERT',
-    });
+    removeAlert();
   };
 
-  return open ? (
+  return isOpen ? (
     <div className='modal'>
-      <div className={`alert alert-${type}`}>
+      <div className={`alert alert-${alertType}`}>
         <i className='far fa-times-circle' onClick={closeHandler}></i>
-        <p>{text}</p>
+        <p>{message}</p>
       </div>
       <div className='closer' onClick={closeHandler}></div>
     </div>
   ) : null;
 };
 
-export default PopUp;
+const mapStateToProps = (state) => {
+  return {
+    alert: state.alert,
+  };
+};
+
+export default connect(mapStateToProps, { removeAlert })(PopUp);

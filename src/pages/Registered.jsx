@@ -11,22 +11,28 @@ import MusicPlayer from '../components/home/MusicPlayer';
 import { AppContext } from '../context/appContext';
 import Playlist from './Playlist';
 import Artist from './Artist';
+import { connect } from 'react-redux';
 
-const Registered = () => {
+const Registered = ({ player }) => {
   const [state] = useContext(AppContext);
   return (
     <Fragment>
       <Navbar />
       <PrivateRoute path='/' exact component={Home} />
-      <PrivateRoute path='/payment' exact component={Payment} />
-      <PrivateRoute path='/playlist/' exact component={Playlist} />
       <PrivateRoute path='/artist/:artistId' exact component={Artist} />
+      {/* <PrivateRoute path='/payment' exact component={Payment} />
+      <PrivateRoute path='/playlist/' exact component={Playlist} />
+      
       <AdminRoute path='/list-trans' exact component={ListTrans} />
       <AdminRoute path='/add-music' exact component={AddMusic} />
-      <AdminRoute path='/add-artist' exact component={AddArtist} />
-      {state.player && state.player.isOpen ? <MusicPlayer /> : null}
+      <AdminRoute path='/add-artist' exact component={AddArtist} /> */}
+      {player && player.isOpen ? <MusicPlayer /> : null}
     </Fragment>
   );
 };
 
-export default Registered;
+const mapStateToProps = (state) => ({
+  player: state.player,
+});
+
+export default connect(mapStateToProps)(Registered);

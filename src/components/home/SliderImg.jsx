@@ -22,7 +22,7 @@ const SliderImg = ({ artist }) => {
           {artist.map((art, index) => (
             <div className='slider' key={index}>
               <Link to={`/artist/${art.id}`}>
-                <img src={art.img} alt='' />
+                <img src={`http://localhost:5000/uploads/${art.img}`} alt='' />
               </Link>
             </div>
           ))}

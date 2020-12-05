@@ -661,12 +661,31 @@ div.modal div i {
 
 div.playlist-container {
   top: 90px;
-  position: absolute;
-  width: 90%;
+  position: relative;
+  width: 100%;
+  margin: 0px auto;
+  display: grid;
+  grid-template-areas: 'banner' 'content';
 }
 
 div.playlist-container h1 {
   margin-bottom: 40px;
+  margin-left: 10.4%;
+}
+
+div.playlist-container img.artist-banner {
+  height: 250px;
+  margin: 15px auto;
+}
+
+div.artist {
+  display: grid;
+  grid-template-areas: 'img table';
+}
+
+div.artist table {
+  background-color: #363954;
+  text-align: center;
 }
 
 /* --------------------------------------- */
@@ -718,3 +737,7 @@ div.not-found {
   align-items: center;
   margin: auto;
 }
+
+/* --------------------------------------- */
+/* ARTIST */
+/* --------------------------------------- */
