@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOAD_ARTISTS, LOAD_ARTIST, LOAD_MUSICS, MUSIC_ERROR, MUSIC_CLEAN, ADD_LIKE, REMOVE_LIKE, ADD_PLAYLIST } from '../types';
+import { LOAD_ARTISTS, LOAD_ARTIST, LOAD_MUSICS, MUSIC_ERROR, MUSIC_CLEAN, ADD_LIKE, REMOVE_LIKE, ADD_MUSIC, ADD_ARTIST } from '../types';
 import { setAlert } from './alert';
 
 // =========================================================================================
@@ -22,6 +22,32 @@ export const loadMusics = () => async (dispatch) => {
     dispatch({
       type: MUSIC_ERROR,
     });
+  }
+};
+
+// =========================================================================================
+// ADD MUSIC
+// =========================================================================================
+
+export const addMusic = (data) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-type': 'multipart/form-data',
+      },
+    };
+    const res = await axios.post('http://localhost:5000/api/v1/music/', data, config);
+    dispatch({
+      type: ADD_MUSIC,
+      payload: res.data.data,
+    });
+    dispatch(setAlert(res.data.message, 'success'));
+  } catch (error) {
+    if (error.response) {
+      if (error.response.data.message) {
+        dispatch(setAlert(error.response.data.message, 'danger'));
+      }
+    }
   }
 };
 
@@ -72,6 +98,32 @@ export const loadArtist = (id) => async (dispatch) => {
 };
 
 // =========================================================================================
+// ADD ARTIST
+// =========================================================================================
+
+export const addArtist = (data) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-type': 'multipart/form-data',
+      },
+    };
+    const res = await axios.post('http://localhost:5000/api/v1/artist/', data, config);
+    dispatch({
+      type: ADD_ARTIST,
+      payload: res.data.data,
+    });
+    dispatch(setAlert(res.data.message, 'success'));
+  } catch (error) {
+    if (error.response) {
+      if (error.response.data.message) {
+        dispatch(setAlert(error.response.data.message, 'danger'));
+      }
+    }
+  }
+};
+
+// =========================================================================================
 // CLEAN MUSIC
 // =========================================================================================
 
@@ -118,29 +170,6 @@ export const removeLike = (musicId, userId) => async (dispatch) => {
     dispatch({
       type: REMOVE_LIKE,
       payload: { musicId, userId },
-    });
-  } catch (error) {
-    if (error.response) {
-      if (error.response.data.message) {
-        dispatch(setAlert(error.response.data.message, 'danger'));
-      }
-    }
-    dispatch({
-      type: MUSIC_ERROR,
-    });
-  }
-};
-
-// =========================================================================================
-// ADD PLAYLIST
-// =========================================================================================
-
-export const addPlaylist = (id) => async (dispatch) => {
-  try {
-    const res = await axios.post(`http://localhost:5000/api/v1/user/playlist/${id}`);
-    dispatch({
-      type: ADD_PLAYLIST,
-      payload: { ...res.data.data, id },
     });
   } catch (error) {
     if (error.response) {

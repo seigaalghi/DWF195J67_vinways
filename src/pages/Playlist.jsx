@@ -1,24 +1,22 @@
-import React, { Fragment, useContext, useState, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import Contents from '../components/home/Contents';
-import { AppContext } from '../context/appContext';
+import { connect } from 'react-redux';
 
-const Playlist = () => {
-  const [state, dispatch] = useContext(AppContext);
-  const [musics, setMusics] = useState([]);
-
-  useEffect(() => {
-    const music = state.musics.filter((music) => state.user.playlist.includes(music.id));
-    setMusics(music);
-  }, [state.user]);
-
-  return (
+const Playlist = ({ auth: { loading, user } }) => {
+  return loading || !user ? (
+    <p>Loading</p>
+  ) : (
     <Fragment>
       <div className='playlist-container'>
-        <h1>{state.user.name}'s Playlist</h1>
-        <Contents musics={musics} queue={state.user.playlist} dispatch={dispatch} />
+        <h1>{user.name}'s Playlist</h1>
+        <Contents musics={user.playlists} queue={user.playlists} />
       </div>
     </Fragment>
   );
 };
 
-export default Playlist;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, null)(Playlist);

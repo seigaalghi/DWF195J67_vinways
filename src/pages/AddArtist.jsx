@@ -1,9 +1,10 @@
-import React, { Fragment, useState, useContext } from 'react';
-import { AppContext } from '../context/appContext';
+import React, { Fragment, useState } from 'react';
+import { addArtist } from '../redux/action/music';
+import { connect } from 'react-redux';
 
-const AddArtist = () => {
-  const [state, dispatch] = useContext(AppContext);
+const AddArtist = ({ addArtist }) => {
   const [image, setImage] = useState('');
+  const [img, setImg] = useState(null);
   const [formData, setForMData] = useState({
     name: '',
     img: '',
@@ -22,16 +23,35 @@ const AddArtist = () => {
       setForMData({ ...formData, [e.target.name]: fileName });
       if (e.target.name === 'img') {
         setImage(URL.createObjectURL(e.target.files[0]));
+        setImg(e.target.files[0]);
       }
     }
   };
 
+  const { name, age, type, start } = formData;
+
+  const cleanForm = () => {
+    setForMData({
+      name: '',
+      img: '',
+      age: '',
+      type: '',
+      start: '',
+    });
+    setImg(null);
+    setImage('');
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch({
-      type: 'ADD_ARTIST',
-      payload: formData,
-    });
+    const data = new FormData();
+    data.append('img', img);
+    data.append('name', name);
+    data.append('age', age);
+    data.append('type', type);
+    data.append('start', start);
+    addArtist(data);
+    cleanForm();
   };
   return (
     <Fragment>
@@ -55,7 +75,7 @@ const AddArtist = () => {
           <input type='text' className='input' name='age' onChange={changeHandler} value={formData.age} required placeholder='Age' />
 
           <select className='input' name='type' onChange={changeHandler} value={formData.type} required placeholder='Artist Type'>
-            <option>Select Artist</option>
+            <option>Select Category</option>
             <option value='Solo'>Solo</option>
             <option value='Duo'>Duo</option>
             <option value='Trio'>Trio</option>
@@ -71,22 +91,26 @@ const AddArtist = () => {
         </form>
       </div>
       <div className='preview'>
-        <h5>Album Art Preview</h5>
-        <div
-          className='blur-img'
-          style={{
-            backgroundImage: `url(${image ? image : ''})`,
-            height: '200px',
-            width: '200px',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: '100%',
-            margin: '10px auto',
-            border: '1px solid #03f387',
-          }}
-        />
+        {image ? (
+          <Fragment>
+            <h5>Album Art Preview</h5>
+            <div
+              className='blur-img'
+              style={{
+                backgroundImage: `url(${image ? image : ''})`,
+                height: '180px',
+                width: '320px',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: '100%',
+                margin: '10px auto',
+                border: '1px solid #03f387',
+              }}
+            />
+          </Fragment>
+        ) : null}
       </div>
     </Fragment>
   );
 };
 
-export default AddArtist;
+export default connect(null, { addArtist })(AddArtist);

@@ -1,4 +1,4 @@
-const { LOAD_MUSICS, MUSIC_ERROR, CLEAN_MUSIC, LOAD_ARTISTS, LOAD_ARTIST, ADD_LIKE, REMOVE_LIKE } = require('../types');
+const { LOAD_MUSICS, MUSIC_ERROR, CLEAN_MUSIC, LOAD_ARTISTS, LOAD_ARTIST, ADD_LIKE, REMOVE_LIKE, ADD_MUSIC } = require('../types');
 
 const initialState = {
   loading: true,
@@ -15,6 +15,12 @@ const musicReducer = (state = initialState, action) => {
       return {
         ...state,
         ...payload,
+        loading: false,
+      };
+    case ADD_MUSIC:
+      return {
+        ...state,
+        musics: [...state.musics, payload.music],
         loading: false,
       };
     case MUSIC_ERROR:

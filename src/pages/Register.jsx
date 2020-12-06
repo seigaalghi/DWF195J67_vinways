@@ -34,8 +34,17 @@ const Register = ({ auth, setAlert, userRegister }) => {
   const form = (
     <Fragment>
       <form onSubmit={submitHandler}>
+        <input type='text' value={formData.name} required onChange={changeHandler} name='name' className='input' placeholder='Full Name' />
         <input type='text' value={formData.email} required onChange={changeHandler} name='email' className='input' placeholder='Email' />
-        <input type='password' value={formData.password} required onChange={changeHandler} name='password' className='input' placeholder='Passowrd' />
+        <input
+          type='password'
+          value={formData.password}
+          required
+          onChange={changeHandler}
+          name='password'
+          className='input'
+          placeholder='Passoword'
+        />
         <input
           type='password'
           value={formData.password2}
@@ -43,9 +52,8 @@ const Register = ({ auth, setAlert, userRegister }) => {
           onChange={changeHandler}
           name='password2'
           className='input'
-          placeholder='Repeat Your Passowrd'
+          placeholder='Confirm Passoword'
         />
-        <input type='text' value={formData.name} required onChange={changeHandler} name='name' className='input' placeholder='Full Name' />
         <input type='submit' value='Register' className='btn btn-big' />
       </form>
     </Fragment>

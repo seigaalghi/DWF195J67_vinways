@@ -23,8 +23,10 @@ export const REMOVE_ALERT = 'REMOVE_ALERT';
 // =====================================================
 
 export const LOAD_MUSICS = 'LOAD_MUSICS';
+export const ADD_MUSIC = 'ADD_MUSIC';
 export const LOAD_ARTISTS = 'LOAD_ARTISTS';
 export const LOAD_ARTIST = 'LOAD_ARTIST';
+export const ADD_ARTIST = 'ADD_ARTIST';
 export const SET_QUEUE = 'SET_QUEUE';
 export const MUSIC_CLEAN = 'MUSIC_CLEAN';
 export const MUSIC_ERROR = 'MUSIC_ERROR';
@@ -39,3 +41,10 @@ export const REMOVE_PLAYLIST = 'REMOVE_PLAYLIST';
 
 export const SET_PLAYER = 'SET_PLAYER';
 export const CLOSE_PLAYER = 'CLOSE_PLAYER';
+
+// =====================================================
+// TRANSACTION
+// =====================================================
+
+export const UPLOAD_PAYMENT = 'UPLOAD_PAYMENT';
+export const GET_PAYMENTS = 'GET_PAYMENTS';

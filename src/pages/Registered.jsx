@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Home from './Home';
-import ListTrans from './ListTrans';
+import ListTransaction from './ListTransaction';
 import Payment from './Payment';
 import AddArtist from './AddArtist';
 import AddMusic from './AddMusic';
@@ -18,12 +18,17 @@ const Registered = ({ player }) => {
       <Navbar />
       <PrivateRoute path='/' exact component={Home} />
       <PrivateRoute path='/artist/:artistId' exact component={Artist} />
-      {/* <PrivateRoute path='/payment' exact component={Payment} />
       <PrivateRoute path='/playlist/' exact component={Playlist} />
-      
-      <AdminRoute path='/list-trans' exact component={ListTrans} />
+      <PrivateRoute path='/payment' exact component={Payment} />
+      <AdminRoute path='/add-artist' exact component={AddArtist} />
       <AdminRoute path='/add-music' exact component={AddMusic} />
-      <AdminRoute path='/add-artist' exact component={AddArtist} /> */}
+      <AdminRoute path='/list-trans' exact component={ListTransaction} />
+      {/* 
+      
+      
+      
+      
+       */}
       {player && player.isOpen ? <MusicPlayer /> : null}
     </Fragment>
   );

@@ -35,8 +35,17 @@ body {
   padding: 5px;
 }
 
+.btn:hover {
+  background: #029f58;
+  cursor: pointer;
+}
+
+.btn.bg-danger:hover {
+  background: #c00000;
+}
+
 .bg-success {
-  background: #03f387;
+  background: #00d475;
 }
 .bg-warning {
   background: #fbff00;
