@@ -18,16 +18,38 @@ const Artist = ({ music: { artist, loading }, loadArtist }) => {
     <Fragment>
       <div className='playlist-container'>
         <div className='artist'>
+          <h1>{artist.name}'s Song(s)</h1>
           <img src={`http://localhost:5000/uploads/${artist.img}`} alt={artist.name} className='artist-banner' />
           <div>
-            <h3>Description</h3>
-            <p>Name : {artist.name}</p>
-            <p>Type : {artist.type}</p>
-            <p>Start at : {artist.start}</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Description :</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Name</td>
+                  <td>: {artist.name}</td>
+                </tr>
+                <tr>
+                  <td>Category</td>
+                  <td>: {artist.type}</td>
+                </tr>
+                <tr>
+                  <td>Start at</td>
+                  <td>: {artist.start}</td>
+                </tr>
+                <tr>
+                  <td>Songs</td>
+                  <td>: {artist.musics.length}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
-        <h1>{artist.name}'s Song(s)</h1>
         <Contents musics={artist.musics} queue={artist.musics} />
       </div>
     </Fragment>

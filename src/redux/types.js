@@ -48,3 +48,5 @@ export const CLOSE_PLAYER = 'CLOSE_PLAYER';
 
 export const UPLOAD_PAYMENT = 'UPLOAD_PAYMENT';
 export const GET_PAYMENTS = 'GET_PAYMENTS';
+export const APPROVE = 'APPROVE';
+export const REJECT = 'REJECT';

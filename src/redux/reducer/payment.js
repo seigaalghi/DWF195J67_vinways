@@ -1,4 +1,4 @@
-const { UPLOAD_PAYMENT, GET_PAYMENTS } = require('../types');
+const { UPLOAD_PAYMENT, GET_PAYMENTS, APPROVE, REJECT } = require('../types');
 
 const initialState = {
   loading: true,
@@ -17,6 +17,18 @@ const paymentReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         ...payload,
+      };
+    case APPROVE:
+      return {
+        ...state,
+        loading: false,
+        transactions: state.transactions.map((transaction) => (transaction.id === payload.transaction.id ? payload.transaction : transaction)),
+      };
+    case REJECT:
+      return {
+        ...state,
+        loading: false,
+        transactions: state.transactions.map((transaction) => (transaction.id === payload.transaction.id ? payload.transaction : transaction)),
       };
     default:
       return state;

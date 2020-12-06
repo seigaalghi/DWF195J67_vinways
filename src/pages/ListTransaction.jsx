@@ -1,18 +1,26 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Table from '../components/transaction/Table';
-import { AppContext } from '../context/appContext';
+import { connect } from 'react-redux';
+import { loadPayments } from '../redux/action/payment';
 
-const ListTrans = () => {
-  const [state, dispatch] = useContext(AppContext);
-  const headers = ['ID', 'Users', 'Bukti Transfer', 'Remaining Active', 'Status User', 'Status Payment', 'Action'];
-  return (
+const ListTrans = ({ payment: { transactions, loading }, loadPayments }) => {
+  const headers = ['ID', 'Name', 'Account Number', 'Transfer Proof', 'Remaining Active', 'Status User', 'Status Payment', 'Action'];
+
+  useEffect(() => {
+    loadPayments();
+  }, []);
+  return transactions ? (
     <Fragment>
       <div className='transaction'>
         <h1>Incoming Transaction</h1>
-        <Table users={state.users} headers={headers} dispatch={dispatch} />
+        <Table transactions={transactions} headers={headers} />
       </div>
     </Fragment>
-  );
+  ) : null;
 };
 
-export default ListTrans;
+const mapStateToProps = (state) => ({
+  payment: state.payment,
+});
+
+export default connect(mapStateToProps, { loadPayments })(ListTrans);
